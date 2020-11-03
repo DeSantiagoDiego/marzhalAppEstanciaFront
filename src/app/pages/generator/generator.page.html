@@ -17,12 +17,12 @@
 
     <ion-grid>
         <ion-row>
-            <ion-col *ngFor="let password of passwords , let i = index" size-xs="12" size-sm="6" size-md="6" size-lg="4" size-xl="3">
+            <ion-col id="allPasswords" *ngFor="let password of passwords , let i = index" size-xs="12" size-sm="6" size-md="6" size-lg="4" size-xl="3">
                 <ion-item-sliding #slidingItem>
                     <ion-item color="dark" lines="none" class="passwords">
                         <ion-label>{{(password.namePassword).padEnd(8)}}</ion-label>
                         <input id="{{i+1}}" readonly="readonly" type="password" class="password" ngModel="{{password.password}}">
-                        <ion-icon name="eye" [color]="passwordShown === true? 'dark':'gray'" item-end (click)="togglePassword(i+1)"></ion-icon>
+                        <ion-icon name="eye" item-end (click)="togglePassword(i+1)"></ion-icon>
                         <!---<ion-icon name="copy-outline"></ion-icon>-->
                     </ion-item>
 

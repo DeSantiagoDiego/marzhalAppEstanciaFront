@@ -13,6 +13,7 @@ export class GeneratorPage implements OnInit {
   resultado2: any;
   passwords: any;
   session :boolean=false;
+  erased:boolean=false;
   constructor(private alertCtrl: AlertController, private navCtrl: NavController, private _dataService: DataService,private screenOrientation: ScreenOrientation,public toastCtrl: ToastController) { }
 
   ngOnInit() {
@@ -73,7 +74,18 @@ this.screenOrientation.onChange().subscribe(
   checkPasswords(){
     this._dataService.checkPasswords(localStorage.getItem('session')).subscribe((resultado)=>{
       console.log(resultado);
-      this.passwords = resultado;
+      
+      this.resultado2 = {userPasswords: Object, message: String, number: Number};
+      this.resultado2 = resultado;
+      if(this.resultado2.number !== 2){
+        console.log("No hay nada");
+        document.getElementById('allPasswords').style.display = 'none';
+        console.log(this.resultado2.userPasswords.length);
+      }else{
+        console.log("Hay algo");
+        this.passwords = this.resultado2.userPasswords;
+        console.log(this.resultado2.userPasswords.length);
+      }
   });
   }
   OnNewPassword(){
