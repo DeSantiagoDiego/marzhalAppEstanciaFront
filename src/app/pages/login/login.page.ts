@@ -15,24 +15,25 @@ export class LoginPage implements OnInit {
   contrasena: string;
   resultado2: any;
   intentos = 0;
-  idAccess: any;
+  idAccess: string = 'c575e8e9-d31a-41d0-bad8-495f41236764';
   minutes: any;
   seconds: any;
   distance: any;
   constructor(private alertCtrl: AlertController, private navCtrl: NavController, private _dataService: DataService,private screenOrientation: ScreenOrientation,private changeCtrl: ChangePasswordPage, private uniqueDeviceID: UniqueDeviceID,public toastCtrl: ToastController) { }
 
   ngOnInit() {
-    
-    this.uniqueDeviceID.get()
-    .then((uuid: any) => this.presentToast(uuid))
-    .catch((error: any) => this.presentToast(error));
+    console.log("Antes:" + this.idAccess);
+    this.uniqueDeviceID.get().then((uuid: any) => this.idAccess = uuid).catch((error: any) => this.presentToast(error));
+    this.presentToast(this.idAccess);
+    console.log("Despues:" +this.idAccess);
    this.screenBlock();
-    this._dataService.checkBlock().subscribe((resultado) => {
-      this.resultado2 = {number: Int32Array, time: Int32Array};
+    this._dataService.checkBlock(this.idAccess).subscribe((resultado) => {
+      this.resultado2 = {number: Int32Array, time: Int32Array, idAccess: String};
       this.resultado2 = resultado;
       console.log(this.resultado2.number);
       if (this.resultado2.number === 2){
        this.distance = this.resultado2.time;
+       this.idAccess = this.resultado2.idAccess;
        this.loginStillBlock();
       }
     });
@@ -71,8 +72,8 @@ this.screenOrientation.onChange().subscribe(
   }
 
   onGenerator() {
-    this._dataService.checkBlock().subscribe((resultado) => {
-      this.resultado2 = {number: Int32Array, time: Int32Array};
+    this._dataService.checkBlock(this.idAccess).subscribe((resultado) => {
+      this.resultado2 = {number: Int32Array, time: Int32Array, idAccess: String};
       this.resultado2 = resultado;
       console.log(this.resultado2.number);
       if (this.resultado2.number === 2){
@@ -131,7 +132,7 @@ this.screenOrientation.onChange().subscribe(
       } else{
         distance = distance - 1000;
       }
-      this._dataService.saveBlock(distance).subscribe((resultado) => {
+      this._dataService.saveBlock(distance,this.idAccess).subscribe((resultado) => {
       });
       console.log(distance);
       // Time calculations for days, hours, minutes and seconds
@@ -141,7 +142,7 @@ this.screenOrientation.onChange().subscribe(
       i = true;
       if (distance < 0) {
         clearInterval(x);
-        this._dataService.saveBlock(null).subscribe((resultado) => {
+        this._dataService.saveBlock(null,this.idAccess).subscribe((resultado) => {
         });
         this.intentos = 0;
         alert('Terminado');
@@ -152,7 +153,7 @@ this.screenOrientation.onChange().subscribe(
     const x = setInterval(() => {
       // Get today's date and time
         this.distance = this.distance - 1000;
-        this._dataService.saveBlock(this.distance).subscribe((resultado) => {
+        this._dataService.saveBlock(this.distance,this.idAccess).subscribe((resultado) => {
       });
         console.log(this.distance);
       // Time calculations for days, hours, minutes and seconds
@@ -161,7 +162,7 @@ this.screenOrientation.onChange().subscribe(
         console.log(this.seconds);
         if (this.distance < 0) {
         clearInterval(x);
-        this._dataService.saveBlock(null).subscribe((resultado) => {
+        this._dataService.saveBlock(null,this.idAccess).subscribe((resultado) => {
         });
         this.intentos = 0;
         alert('Terminado');

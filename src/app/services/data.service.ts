@@ -72,14 +72,18 @@ export class DataService {
     return this._client.post(apiUrl + '/userTryFailed', user);
   }
 
-  saveBlock(distance: number){
+  saveBlock(distance: number, idAccess: string){
     const block = {
-      time: distance
+      time: distance,
+      idDevice: idAccess
     };
     return this._client.post(apiUrl + '/blockLogin', block);
   }
-  checkBlock(){
-    return this._client.get(apiUrl + '/checkLogin');
+  checkBlock( idAccess: string){
+    const idBlock = {
+      idDevice: idAccess
+    };
+    return this._client.post(apiUrl + '/checkLogin', idBlock);
   }
   checkPasswords(tokenUser: string){
     const token = {

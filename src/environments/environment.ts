@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/auth',
-  apiHost:'localhost:3000'
-  //apiUrl: 'http://marzhalid.fakturor.com.mx/api/auth',
-  //apiHost:'marzhalid.fakturor.com.mx'
+  //apiUrl: 'http://localhost:3000/api/auth',
+  //apiHost:'localhost:3000'
+  apiUrl: 'http://marzhalid.fakturor.com.mx/api/auth',
+  apiHost:'marzhalid.fakturor.com.mx'
 };
 
 /*
