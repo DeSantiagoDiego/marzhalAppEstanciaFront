@@ -1,0 +1,132 @@
+<app-header></app-header>
+<ion-content color="dark">
+    <h5 id="notVerify">Cuenta no verificada</h5>
+    <img style="display: none;" src="/assets/img/black.PNG" alt="" class="center">
+    <ion-buttons id="buttonGenerate">
+        <ion-button (click)="createPassword()"><b id="generate">GENERAR</b></ion-button>
+    </ion-buttons>
+    <h6 id="textNewPass">nueva contraseña segura:</h6>
+    <!--
+    <ion-item color="dark" lines="none">
+        <input type="text">
+        <ion-icon name="copy-outline"></ion-icon>
+    </ion-item>-->
+    <h6 id="myPasswords">MIS CONTRASEÑAS</h6>
+
+
+
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let password of passwords , let i = index" size-xs="12" size-sm="6" size-md="6" size-lg="4" size-xl="3">
+                <ion-item-sliding #slidingItem>
+                    <ion-item color="dark" lines="none" class="passwords">
+                        <ion-label>{{(password.namePassword).padEnd(8)}}</ion-label>
+                        <input id="{{i+1}}" readonly="readonly" type="password" class="password" ngModel="{{password.password}}">
+                        <ion-icon name="eye" [color]="passwordShown === true? 'dark':'gray'" item-end (click)="togglePassword(i+1)"></ion-icon>
+                        <!---<ion-icon name="copy-outline"></ion-icon>-->
+                    </ion-item>
+
+                    <ion-item-options side="start">
+                        <ion-item-option (click)="copyPassword(slidingItem,i+1)" style="background: gray;">
+                            <ion-icon name="copy-outline" slot="icon-only"></ion-icon>
+                        </ion-item-option>
+
+                    </ion-item-options>
+
+                    <ion-item-options side="end">
+                        <ion-item-option id="updateIcon" (click)="updatePassword(slidingItem,this.password)">
+                            <ion-icon class="edit" name="create-outline" slot="icon-only"></ion-icon>
+                        </ion-item-option>
+                        <ion-item-option id="delete" color="danger" (click)="deletePassword(slidingItem, this.password)">
+                            <ion-icon class="delete" name="trash" slot="icon-only"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+
+
+    <!---
+    <ion-item-sliding>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col size-xs="12" size-sm="9" size-md="6" size-lg="12" size-xl="4">
+                    <ion-item color="dark" lines="none" class="passwords">
+                        <ion-label>BANCO
+                            <p></p>
+                        </ion-label>
+                        <input type="text" class="password">
+                        <ion-icon name="copy-outline"></ion-icon>
+                    </ion-item>
+
+                    <ion-item-options side="end">
+                        <ion-item-option color="danger">
+                            <ion-icon class="delete" name="trash" slot="icon-only"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </ion-item-sliding>
+
+    <ion-item-sliding #slidingItem>
+
+
+        <ion-item color="dark" lines="none" class="passwords">
+            <ion-label>CORREO&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+            <input type="text" class="password">
+            <ion-icon name="copy-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="deleteC(slidingItem)">
+                <ion-icon class="delete" name="trash" slot="icon-only"></ion-icon>
+            </ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+    <ion-item-sliding>
+
+        <ion-item color="dark" lines="none" class="passwords" id="newPassword">
+            <ion-label id="newPassword2">
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+            </ion-label>
+            <input type="text" class="password">
+            <ion-icon name="copy-outline"></ion-icon>
+        </ion-item>
+        <ion-item-options side="end">
+            <ion-item-option color="danger">
+                <ion-icon class="delete" name="trash" slot="icon-only"></ion-icon>
+            </ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+    
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" size-sm="4">
+                Primera Columna
+            </ion-col>
+            <ion-col size="2" size-sm="3">
+                Segunda Columna
+            </ion-col>
+            <ion-col size="2" size-sm="3">
+                Tercera Columna
+            </ion-col>
+            <ion-col size="2" size-sm="2">
+                Cuarta Columna
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <input [type]="passwordType">
+    <ion-icon name="eye" [color]="passwordShown === true? 'dark':'gray'" item-end (click)="togglePassword()"></ion-icon>
+    <ion-icon id="add" name="add" (click)="OnNewPassword()"></ion-icon>
+    <h6 id="textNewPass">Agregar nuevo registro</h6>--->
+    <h6 id="bottom">CYBERSECURITY EXPERTS</h6>
+
+
+
+</ion-content>

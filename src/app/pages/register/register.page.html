@@ -1,0 +1,28 @@
+<ion-content color="dark">
+    <img src="/assets/img/D3.svg" alt="" class="center">
+    <img src="/assets/img/marzhalId2.svg" alt="" class="center" id="title">
+
+    <ion-list>
+        <ion-item color="dark">
+            <ion-input type="text" [(ngModel)]="usuario"></ion-input>
+        </ion-item>
+        <b>Correo electrónico</b>
+        <ion-item color="dark">
+            <ion-input type="password" [(ngModel)]="contrasena"></ion-input>
+        </ion-item>
+        <b>Contraseña</b>
+    </ion-list>
+    <ion-list id="buttons">
+        <ion-buttons>
+            <ion-button (click)="onGenerator()">
+                <b id="access">registrarse</b>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons>
+            <ion-button id="buttonSub" (click)="Onsubcribe()">
+                <b id="subscribe">cancelar</b>
+            </ion-button>
+        </ion-buttons>
+    </ion-list>
+    <h6 id="bottom">CYBERSECURITY EXPERTS</h6>
+</ion-content>

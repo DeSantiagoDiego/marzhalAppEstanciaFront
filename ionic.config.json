@@ -1,0 +1,7 @@
+{
+  "name": "marzhalId",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
