@@ -15,19 +15,25 @@ export class LoginPage implements OnInit {
   contrasena: string;
   resultado2: any;
   intentos = 0;
-  idAccess: string = 'c575e8e9-d31a-41d0-bad8-495f41236764';
+  idAccess: string;
+  idDevice: string= 'c575e8e9-d31a-41d0-bad8-495f41236764';
   minutes: any;
   seconds: any;
   distance: any;
   constructor(private alertCtrl: AlertController, private navCtrl: NavController, private _dataService: DataService,private screenOrientation: ScreenOrientation,private changeCtrl: ChangePasswordPage, private uniqueDeviceID: UniqueDeviceID,public toastCtrl: ToastController) { }
 
   ngOnInit() {
-    console.log("Antes:" + this.idAccess);
-    this.uniqueDeviceID.get().then((uuid: any) => this.idAccess = uuid).catch((error: any) => this.presentToast(error));
-    this.presentToast(this.idAccess);
-    console.log("Despues:" +this.idAccess);
+    console.log("Antes:" + this.idDevice);
+    this.uniqueDeviceID.get().then((uuid: any) => {this.search(uuid), console.log('Funciona:' +uuid),this.idAccess = uuid}).catch((error: any) => {this.search(this.idDevice),console.log('No funciona'), this.idAccess=this.idDevice});
+    //this.presentToast(this.idAccess);
+    console.log("DespuesFinal:" +this.idAccess);
    this.screenBlock();
-    this._dataService.checkBlock(this.idAccess).subscribe((resultado) => {
+    
+  }
+
+
+  search(idAccess){
+    this._dataService.checkBlock(idAccess).subscribe((resultado) => {
       this.resultado2 = {number: Int32Array, time: Int32Array, idAccess: String};
       this.resultado2 = resultado;
       console.log(this.resultado2.number);
@@ -80,9 +86,9 @@ this.screenOrientation.onChange().subscribe(
        this.alertShow('El inicio de sesion ha sido bloqueado anteriormente, espere <strong>' + this.minutes + ' minutos y ' + this.seconds + ' segundos.</strong>');
       }else{
         if (this.usuario === '' || this.usuario === null || this.usuario === undefined || this.usuario.length === 0){
-          this.alertShow('Ingrese el correo');
+          this.alertShow('Ingrese el correo.');
         } else if (this.contrasena === '' || this.contrasena === null || this.contrasena === undefined || this.contrasena.length === 0){
-          this.alertShow('Ingrese una contraseña');
+          this.alertShow('Ingrese una contraseña.');
         }else{
         this._dataService.loginUser(this.usuario, this.contrasena).subscribe((resultado) => {
           this.resultado2 = {auth: String, token: String, number: Int32Array, account: Boolean};
@@ -90,14 +96,14 @@ this.screenOrientation.onChange().subscribe(
           if (this.resultado2.number === 1){
             console.log('Bienvenido');
             console.log(resultado);
-            this.alertShow('Bienvenido');
+            this.alertShow('Bienvenido.');
             localStorage.setItem('session', this.resultado2.token);
             localStorage.setItem('account', this.resultado2.account.toString());
             console.log(localStorage.getItem('session'));
             this.navCtrl.navigateForward('/generator');
           }else{
           console.log(resultado);
-          this.alertShow('Correo o contraseña invalidos');
+          this.alertShow('Correo o contraseña invalidos.');
           console.log(this.resultado2.auth);
           this.intentos = this.intentos + 1;
           // console.log(this.intentos);
@@ -116,7 +122,7 @@ this.screenOrientation.onChange().subscribe(
   loginBlock(){
     const expirationDate = new Date();
     const exp = expirationDate;
-    exp.setSeconds(exp.getSeconds() + 30);
+    exp.setSeconds(exp.getSeconds() + 1800);
     let countDownDate = exp.getTime();
     let i = false;
     let distance;
@@ -145,7 +151,7 @@ this.screenOrientation.onChange().subscribe(
         this._dataService.saveBlock(null,this.idAccess).subscribe((resultado) => {
         });
         this.intentos = 0;
-        alert('Terminado');
+        //alert('Terminado');
       }
     }, 1000);
   }
@@ -165,7 +171,7 @@ this.screenOrientation.onChange().subscribe(
         this._dataService.saveBlock(null,this.idAccess).subscribe((resultado) => {
         });
         this.intentos = 0;
-        alert('Terminado');
+        //alert('Terminado');
       }
     }, 1000);
   }

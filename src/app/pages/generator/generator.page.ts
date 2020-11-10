@@ -45,7 +45,7 @@ this.screenOrientation.onChange().subscribe(
       } else{
         this.session =false;
         console.log('Usted no está logueado');
-        this.alertShow('Usted no está logueado, inicie sesion para continuar');
+        this.alertShow('Usted no está logueado, inicie sesion para continuar.');
         this.navCtrl.navigateForward('/login');
       }
   });
@@ -66,7 +66,7 @@ this.screenOrientation.onChange().subscribe(
       } else{
         this.session =false;
         console.log('Usted no está logueado');
-        this.alertShow('Usted no está logueado, inicie sesion para continuar');
+        this.alertShow('Usted no está logueado, inicie sesion para continuar.');
         this.navCtrl.navigateForward('/login');
       }
   });
@@ -199,7 +199,7 @@ this.screenOrientation.onChange().subscribe(
   async presentAlertCreate() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Ingrese el nombre de su contraseña y el numero de digitos',
+      header: 'Ingrese el nombre de su contraseña y el numero de digitos.',
       inputs: [
         {
           id: 'tituloPantalla',
@@ -228,7 +228,7 @@ this.screenOrientation.onChange().subscribe(
           handler: (data) => {
             console.log('Boton OK', data.namePass, parseInt(data.numberPass));
             if (data.namePass.length === 0 || data.namePass === '' || data.namePass === null || data.namePass === undefined){
-              return this.alertShow('Ingrese un nombre');
+              return this.alertShow('Ingrese un nombre.');
             }
 
             var validado = true;
@@ -248,16 +248,16 @@ this.screenOrientation.onChange().subscribe(
             if (validado){
             console.log('funciona');
               if(validado2){
-                return this.alertShow('El nombre ingresado contiene un espacio en blanco inicial');
+                return this.alertShow('El nombre ingresado contiene un espacio en blanco inicial.');
               }
             }else{
-              return this.alertShow('Ingrese un nombre');
+              return this.alertShow('Ingrese un nombre.');
             }
             if (data.namePass.length > 8){
               return this.alertShow('El nombre ingresado es muy largo, verifiquelo y vuelva a intentarlo.');
             }
             if (data.numberPass === 0 || data.numberPass < 8 || data.numberPass.length === 0 || data.numberPass === '' || data.numberPass === null || data.numberPass === undefined){
-              console.log('Usted no ingresó nada, por tanto, el valor es 8');
+              console.log('Usted no ingresó nada, por tanto, el valor es 8.');
               data.numberPass = 8;
             }
             if (data.numberPass > 32){
@@ -283,7 +283,7 @@ this.screenOrientation.onChange().subscribe(
   async presentAlertUpdate(password) {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Modifique los valores necesarios',
+      header: 'Modifique los valores necesarios.',
       inputs: [
         {
           id: 'tituloPantalla',
@@ -314,13 +314,13 @@ this.screenOrientation.onChange().subscribe(
           handler: (data) => {
             console.log('Boton OK', data.namePass, data.numberPass);
             if (data.namePass.length === 0 || data.namePass === '' || data.namePass === null || data.namePass === undefined){
-              return this.alertShow('Ingrese un nombre');
+              return this.alertShow('Ingrese un nombre.');
             }
             if (data.namePass.length > 8){
               return this.alertShow('El nombre ingresado es muy largo, verifiquelo y vuelva a intentarlo.');
             }
             if (data.numberPass.length === 0 || data.numberPass === '' || data.numberPass === null || data.numberPass === undefined){
-              return this.alertShow('Ingrese una contraseña');
+              return this.alertShow('Ingrese una contraseña.');
             }
             if (data.numberPass.length > 32){
              return this.alertShow('El numero de digitos ingresado excede el limite permitido, verifiquelo y vuelva a intentarlo.');

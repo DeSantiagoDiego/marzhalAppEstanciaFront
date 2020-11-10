@@ -32,9 +32,9 @@ this.screenOrientation.onChange().subscribe(
   }
   onGenerator() {
     if(this.usuario==="" || this.usuario===null || this.usuario===undefined ||this.usuario.length===0){
-      this.alertShow('Ingrese el correo');
+      this.alertShow('Ingrese el correo.');
     } else if(this.contrasena===""||this.contrasena===null||this.contrasena===undefined ||this.contrasena.length===0){
-      this.alertShow('Ingrese una contraseña');
+      this.alertShow('Ingrese una contraseña.');
      } else {
       var validado = true;
       var validado2 = false;
@@ -53,15 +53,15 @@ this.screenOrientation.onChange().subscribe(
       if (validado){
       console.log('funciona');
         if(validado2){
-          return this.alertShow('La contraseña ingresada contiene un espacio en blanco inicial');
+          return this.alertShow('La contraseña ingresada contiene un espacio en blanco inicial.');
         }
       }else{
-        return this.alertShow('Ingrese una contraseña');
+        return this.alertShow('Ingrese una contraseña.');
       }
      }
      
-     if(this.contrasena.length < 5 || this.contrasena.length > 11){
-        this.alertShow('Ingrese una contraseña de minimo 5 caracteres y maximo 11');
+     if(this.contrasena.length < 8){
+        this.alertShow('Ingrese una contraseña de minimo 8 caracteres.');
       }else if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(this.usuario)){
       //this.alertShow('Correcto');
       console.log('Correcto');
@@ -79,7 +79,7 @@ this.screenOrientation.onChange().subscribe(
     });
     // this.navCtrl.navigateForward('/generator');
   }else{
-    this.alertShow('El correo electronico ingresado no es valido');
+    this.alertShow('El correo electronico ingresado no es valido.');
 }
   }
 

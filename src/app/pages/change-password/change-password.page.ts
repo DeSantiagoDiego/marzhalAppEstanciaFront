@@ -38,7 +38,7 @@ this.screenOrientation.onChange().subscribe(
   async presentAlertPrompt() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Ingrese su correo electronico',
+      header: 'Ingrese su correo electronico.',
       inputs: [
         {
           id: 'tituloPantalla',
@@ -83,11 +83,11 @@ this.screenOrientation.onChange().subscribe(
             console.log('funciona');
               if(validado2){
                 this.email = false;
-                return this.alertShowEmail('El correo electronico ingresado contiene un espacio en blanco inicial');
+                return this.alertShowEmail('El correo electronico ingresado contiene un espacio en blanco inicial.');
               }
             }else{
               this.email = false;
-              return this.alertShowEmail('Ingrese su correo electronico');
+              return this.alertShowEmail('Ingrese su correo electronico.');
             }
             if(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(this.usuario)){
               this._dataService.sendChangePassword(data.name1).subscribe((resultado) => {
@@ -105,7 +105,7 @@ this.screenOrientation.onChange().subscribe(
             });
             }else{
               this.email = false;
-              return this.alertShowEmail('El correo electronico ingresado no es valido');
+              return this.alertShowEmail('El correo electronico ingresado no es valido.');
             }
             
           }
@@ -143,7 +143,7 @@ this.screenOrientation.onChange().subscribe(
       return this.alertShowEmail('Porfavor ingrese su correo electronico para continuar.');
     }
     if(this.contrasena===""||this.contrasena===null||this.contrasena===undefined ||this.contrasena.length===0){
-      return this.alertShow('Ingrese una contraseña');
+      return this.alertShow('Ingrese una contraseña.');
      } else {
       var validado = true;
       var validado2 = false;
@@ -162,18 +162,18 @@ this.screenOrientation.onChange().subscribe(
       if (validado){
       console.log('funciona');
         if(validado2){
-          return this.alertShow('La contraseña ingresada contiene un espacio en blanco inicial');
+          return this.alertShow('La contraseña ingresada contiene un espacio en blanco inicial.');
         }
       }else{
-        return this.alertShow('Ingrese una contraseña');
+        return this.alertShow('Ingrese una contraseña.');
       }
      }
    if (this.contrasena !== this.confirmarContrasena){
-    this.alertShow('Las contraseñas no coindicen, verifiquelas y vuelva a intentarlo');
+    this.alertShow('Las contraseñas no coindicen, verifiquelas y vuelva a intentarlo.');
    }
    else{
-    if(this.contrasena.length < 5 || this.contrasena.length > 11){
-      return this.alertShow('Ingrese una contraseña de minimo 5 caracteres y maximo 11');
+    if(this.contrasena.length < 8 ){
+      return this.alertShow('Ingrese una contraseña de minimo 8 caracteres.');
     }
     this._dataService.verifyChangePassword(this.usuario,this.contrasena).subscribe((resultado) => {
       this.resultado2 = {message: String, number: Int32Array};

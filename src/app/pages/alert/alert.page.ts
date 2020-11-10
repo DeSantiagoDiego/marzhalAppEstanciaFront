@@ -31,7 +31,7 @@ session :boolean=false;
       } else{
         this.session =false;
         console.log('Usted no está logueado');
-        this.alertShow('Usted no está logueado, inicie sesion para continuar');
+        this.alertShow('Usted no está logueado, inicie sesion para continuar.');
         this.navCtrl.navigateForward('/login');
       }
   });
@@ -109,7 +109,7 @@ this.screenOrientation.onChange().subscribe(
             if (validado){
             console.log('funciona');
             }else{
-              return this.alertShow('NO se ingresó ningun mensaje, verifiquelo y vuela a intentarlo.');
+              return this.alertShow('No se ingresó ningun mensaje, verifiquelo y vuela a intentarlo.');
             }
             console.log(data.alert);
             this.alertShow2(data.alert);
